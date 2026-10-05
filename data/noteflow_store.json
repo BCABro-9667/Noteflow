@@ -1,0 +1,156 @@
+{
+  "users": [
+    {
+      "id": "00000000-0000-0000-0000-000000000001",
+      "name": "Alex Morgan",
+      "email": "alex.demo@noteflow.app",
+      "password": "$2b$10$umqCJ7LvjjJfX3RsaPZWDeSt4aresDSHsQAcXJg8XeRTEnblXici.",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+      "pin_hash": null,
+      "reset_token": null,
+      "reset_token_expires": null,
+      "token_version": 1,
+      "created_at": "2026-10-05T16:17:07.836Z",
+      "updated_at": "2026-10-05T16:36:32.828Z"
+    }
+  ],
+  "notes": [
+    {
+      "id": "20000000-0000-0000-0000-000000000001",
+      "user_id": "00000000-0000-0000-0000-000000000001",
+      "title": "Welcome to NoteFlow 🚀",
+      "content": "<h2>Welcome to your clean, distraction-free workspace!</h2><p>NoteFlow is designed with a modern flat aesthetic to keep your focus squarely on your thoughts and tasks.</p><ul><li><strong>Rich formatting:</strong> Headings, lists, bold, italics, checklists, quotes & code blocks</li><li><strong>Organization:</strong> Pin important notes, mark favorites, organize with tags, and archive</li><li><strong>Safety:</strong> Instant auto-saving and full Trash bin with restore capabilities</li></ul><blockquote>\"Simplicity is the prerequisite for reliability.\" — Edsger W. Dijkstra</blockquote>",
+      "is_pinned": true,
+      "is_favorite": true,
+      "is_archived": false,
+      "is_locked": false,
+      "deleted_at": null,
+      "created_at": "2026-10-05T16:17:07.848Z",
+      "updated_at": "2026-10-05T16:17:07.848Z"
+    },
+    {
+      "id": "20000000-0000-0000-0000-000000000003",
+      "user_id": "00000000-0000-0000-0000-000000000001",
+      "title": "Weekend Reading List & Research",
+      "content": "<h3>Articles & Books to Review</h3><p>Notes on software design patterns, state management, and minimalism in UI:</p><ol><li>Refactoring UI by Adam Wathan & Steve Schoger</li><li>Designing Data-Intensive Applications by Martin Kleppmann</li><li>Building Micro-Frontends & Modular Design Systems</li></ol><p><em>Remember to take structured handwritten summaries every Sunday morning.</em></p>",
+      "is_pinned": false,
+      "is_favorite": true,
+      "is_archived": false,
+      "is_locked": false,
+      "deleted_at": null,
+      "created_at": "2026-10-05T16:17:07.860Z",
+      "updated_at": "2026-10-05T16:17:07.860Z"
+    },
+    {
+      "id": "20000000-0000-0000-0000-000000000004",
+      "user_id": "00000000-0000-0000-0000-000000000001",
+      "title": "Creative Project Brainstorming",
+      "content": "<h3>Next Gen Workspace Ideas</h3><p>Brainstorming features for collaborative note-taking and knowledge graphs:</p><ul><li>Bento-grid customizable dashboard widgets</li><li>Instant keyboard shortcuts (Cmd+K command palette)</li><li>Bi-directional wiki links [[Note Title]]</li><li>Encrypted local-first offline storage syncing</li></ul>",
+      "is_pinned": false,
+      "is_favorite": false,
+      "is_archived": false,
+      "is_locked": false,
+      "deleted_at": null,
+      "created_at": "2026-10-05T16:17:07.863Z",
+      "updated_at": "2026-10-05T16:17:07.863Z"
+    },
+    {
+      "id": "d5a454d5-0d17-488a-9b85-87056adcd193",
+      "user_id": "00000000-0000-0000-0000-000000000001",
+      "title": "Ehheh",
+      "content": "Rhrhrh",
+      "is_pinned": false,
+      "is_favorite": false,
+      "is_archived": false,
+      "is_locked": false,
+      "deleted_at": null,
+      "created_at": "2026-10-05T16:18:18.775Z",
+      "updated_at": "2026-10-05T16:18:25.696Z"
+    },
+    {
+      "id": "20000000-0000-0000-0000-000000000002",
+      "user_id": "00000000-0000-0000-0000-000000000001",
+      "title": "Product Architecture & Sprint Goals",
+      "content": "<h3>Sprint 24 Deliverables</h3><p>Key technical milestones for the upcoming production deployment:</p><ul class=\"checklist\"><li data-checked=\"true\">Implement PostgreSQL relational persistence</li><li data-checked=\"true\">Distraction-free rich text editor with auto-save</li><li data-checked=\"true\">Dark mode, Light mode & System theme synchronization</li><li data-checked=\"false\">End-to-end security audits & input validation</li></ul><p>Architecture stack: <code>Express + PostgreSQL (PGlite) + React 19 + Tailwind CSS</code></p>",
+      "is_pinned": true,
+      "is_favorite": false,
+      "is_archived": false,
+      "is_locked": false,
+      "deleted_at": null,
+      "created_at": "2026-10-05T16:17:07.857Z",
+      "updated_at": "2026-10-05T16:36:27.650Z"
+    }
+  ],
+  "tags": [
+    {
+      "id": "10000000-0000-0000-0000-000000000001",
+      "user_id": "00000000-0000-0000-0000-000000000001",
+      "name": "Work",
+      "color": "#2563eb",
+      "created_at": "2026-10-05T16:17:07.838Z"
+    },
+    {
+      "id": "10000000-0000-0000-0000-000000000002",
+      "user_id": "00000000-0000-0000-0000-000000000001",
+      "name": "Personal",
+      "color": "#10b981",
+      "created_at": "2026-10-05T16:17:07.843Z"
+    },
+    {
+      "id": "10000000-0000-0000-0000-000000000003",
+      "user_id": "00000000-0000-0000-0000-000000000001",
+      "name": "Ideas",
+      "color": "#f59e0b",
+      "created_at": "2026-10-05T16:17:07.844Z"
+    },
+    {
+      "id": "10000000-0000-0000-0000-000000000004",
+      "user_id": "00000000-0000-0000-0000-000000000001",
+      "name": "Projects",
+      "color": "#8b5cf6",
+      "created_at": "2026-10-05T16:17:07.846Z"
+    },
+    {
+      "id": "10000000-0000-0000-0000-000000000005",
+      "user_id": "00000000-0000-0000-0000-000000000001",
+      "name": "Study",
+      "color": "#06b6d4",
+      "created_at": "2026-10-05T16:17:07.847Z"
+    }
+  ],
+  "note_tags": [
+    {
+      "note_id": "20000000-0000-0000-0000-000000000001",
+      "tag_id": "10000000-0000-0000-0000-000000000001"
+    },
+    {
+      "note_id": "20000000-0000-0000-0000-000000000001",
+      "tag_id": "10000000-0000-0000-0000-000000000003"
+    },
+    {
+      "note_id": "20000000-0000-0000-0000-000000000002",
+      "tag_id": "10000000-0000-0000-0000-000000000001"
+    },
+    {
+      "note_id": "20000000-0000-0000-0000-000000000002",
+      "tag_id": "10000000-0000-0000-0000-000000000004"
+    },
+    {
+      "note_id": "20000000-0000-0000-0000-000000000003",
+      "tag_id": "10000000-0000-0000-0000-000000000002"
+    },
+    {
+      "note_id": "20000000-0000-0000-0000-000000000003",
+      "tag_id": "10000000-0000-0000-0000-000000000005"
+    },
+    {
+      "note_id": "20000000-0000-0000-0000-000000000004",
+      "tag_id": "10000000-0000-0000-0000-000000000003"
+    },
+    {
+      "note_id": "20000000-0000-0000-0000-000000000004",
+      "tag_id": "10000000-0000-0000-0000-000000000004"
+    }
+  ],
+  "saved_at": "2026-10-05T16:36:32.937Z"
+}

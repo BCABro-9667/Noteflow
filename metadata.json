@@ -1,0 +1,6 @@
+{
+  "name": "NoteFlow",
+  "description": "A minimalistic, modern, flat full-stack notes application with rich note editing, tags, archiving, trash recovery, and full authentication.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
