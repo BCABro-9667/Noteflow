@@ -119,13 +119,22 @@ export const NoteEditor: React.FC<NoteEditorProps> = ({
       isArchived: boolean;
       tags: string[];
     }>) => {
+      const finalTitle = overrideData?.title !== undefined ? overrideData.title : title;
+      const contentHtml = overrideData?.content !== undefined ? overrideData.content : (editorRef.current?.innerHTML || '');
+      const rawText = (editorRef.current?.innerText || '').trim();
+
+      // Empty Notes: Do not auto-save a note until it contains at least one character
+      if (!finalTitle.trim() && !rawText) {
+        setSaveStatus('saved');
+        return;
+      }
+
       setSaveStatus('saving');
       try {
-        const contentHtml = editorRef.current?.innerHTML || '';
         const savedNote = await onSave({
           id: currentNoteIdRef.current,
-          title: overrideData?.title !== undefined ? overrideData.title : title,
-          content: overrideData?.content !== undefined ? overrideData.content : contentHtml,
+          title: finalTitle,
+          content: contentHtml,
           isPinned: overrideData?.isPinned !== undefined ? overrideData.isPinned : isPinned,
           isFavorite: overrideData?.isFavorite !== undefined ? overrideData.isFavorite : isFavorite,
           isArchived: overrideData?.isArchived !== undefined ? overrideData.isArchived : isArchived,
@@ -145,6 +154,13 @@ export const NoteEditor: React.FC<NoteEditorProps> = ({
   );
 
   const scheduleAutoSave = () => {
+    const rawText = (editorRef.current?.innerText || '').trim();
+    if (!title.trim() && !rawText) {
+      if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
+      setSaveStatus('saved');
+      return;
+    }
+
     setSaveStatus('unsaved');
     if (debounceTimerRef.current) {
       clearTimeout(debounceTimerRef.current);
@@ -221,7 +237,8 @@ export const NoteEditor: React.FC<NoteEditorProps> = ({
             type="button"
             onClick={async () => {
               if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
-              if (saveStatus === 'unsaved') {
+              const rawText = (editorRef.current?.innerText || '').trim();
+              if (saveStatus === 'unsaved' && (title.trim() || rawText)) {
                 await triggerSave();
               }
               onBack();

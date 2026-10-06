@@ -297,7 +297,28 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenAuth, onEnterWor
             <span className="text-neutral-300 dark:text-neutral-700 hidden sm:inline">|</span>
 
             {/* ONLY ONE BUTTON ON NAVBAR: LOGIN (or Enter Workspace if user is signed in) */}
-            {user ? (
+           
+          </div>
+
+          {/* Right side: Clean section navigation links */}
+          <nav className="hidden md:flex items-center gap-7 text-xs font-medium text-neutral-600 dark:text-neutral-400">
+            <a href="#workflow" className="hover:text-neutral-950 dark:hover:text-neutral-100 transition-colors">
+              Workflow
+            </a>
+            <a href="#try-it" className="hover:text-neutral-950 dark:hover:text-neutral-100 transition-colors">
+              Live Preview
+            </a>
+            <a href="#features" className="hover:text-neutral-950 dark:hover:text-neutral-100 transition-colors">
+              Features
+            </a>
+            <a href="#testimonials" className="hover:text-neutral-950 dark:hover:text-neutral-100 transition-colors">
+              Testimonials
+            </a>
+            <a href="#faq" className="hover:text-neutral-950 dark:hover:text-neutral-100 transition-colors">
+              FAQ
+            </a>
+
+             {user ? (
               <button
                 id="btn-nav-login"
                 type="button"
@@ -318,25 +339,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenAuth, onEnterWor
                 <span>Login</span>
               </button>
             )}
-          </div>
-
-          {/* Right side: Clean section navigation links */}
-          <nav className="hidden md:flex items-center gap-7 text-xs font-medium text-neutral-600 dark:text-neutral-400">
-            <a href="#workflow" className="hover:text-neutral-950 dark:hover:text-neutral-100 transition-colors">
-              Workflow
-            </a>
-            <a href="#try-it" className="hover:text-neutral-950 dark:hover:text-neutral-100 transition-colors">
-              Live Preview
-            </a>
-            <a href="#features" className="hover:text-neutral-950 dark:hover:text-neutral-100 transition-colors">
-              Features
-            </a>
-            <a href="#testimonials" className="hover:text-neutral-950 dark:hover:text-neutral-100 transition-colors">
-              Testimonials
-            </a>
-            <a href="#faq" className="hover:text-neutral-950 dark:hover:text-neutral-100 transition-colors">
-              FAQ
-            </a>
           </nav>
         </div>
       </header>
@@ -389,7 +391,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenAuth, onEnterWor
                       onClick={handleLaunchDemo}
                       className="px-6 py-3 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-xs inline-flex items-center gap-2 transition-all cursor-pointer hover:shadow-md"
                     >
-                      <Sparkles className="w-4 h-4 text-amber-300" />
                       <span>Try Live Demo (1-Click)</span>
                       <ArrowRight className="w-4 h-4" />
                     </button>
@@ -436,15 +437,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenAuth, onEnterWor
               {/* Floating Badge 2 (Profile Display Picture chip) */}
               <div className="gsap-floating-badge-2 absolute -bottom-4 -left-2 sm:-left-4 z-20 bg-white dark:bg-neutral-800 p-2 pr-3.5 rounded-xl border border-neutral-200 dark:border-neutral-700 shadow-lg flex items-center gap-2.5">
                 <img
-                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"
+                  src="https://lh3.googleusercontent.com/agvQKFWwzA0-BWzKLi01DaxYZ-fiLIMZvPZyakyGgst6btTmCsDOQ-JZtJlMZ4r3WMjxBXROQmR878hZN1cEBx_QVIY=s124"
                   alt="Custom Avatar"
                   className="w-7 h-7 rounded-full object-cover border border-neutral-200 dark:border-neutral-700"
                 />
                 <div className="text-left">
                   <p className="text-[11px] font-bold text-neutral-900 dark:text-neutral-100 leading-tight">
-                    Custom DP by Link
+                    Avdhesh Kumar
                   </p>
-                  <p className="text-[10px] text-neutral-400 leading-tight">Instant Profile Sync</p>
+                  <p className="text-[10px] text-neutral-400 leading-tight">Developer</p>
                 </div>
               </div>
 
@@ -935,35 +936,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenAuth, onEnterWor
         </div>
       </section>
 
-      {/* 8. CLEAN BOTTOM CALL TO ACTION */}
-      <section id="cta-section" className="py-16 text-center max-w-4xl mx-auto px-4 sm:px-6">
-        <div className="gsap-cta-box p-8 sm:p-12 rounded-3xl bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 shadow-md">
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
-            Ready for a clearer, calmer mind?
-          </h2>
-          <p className="mt-3 text-xs sm:text-sm text-neutral-300 dark:text-neutral-600 max-w-md mx-auto leading-relaxed">
-            Start writing in seconds with zero friction. Explore with our pre-loaded live demo or create your free account today.
-          </p>
-
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-            <button
-              type="button"
-              onClick={handleLaunchDemo}
-              className="px-5 py-2.5 text-xs sm:text-sm font-semibold text-neutral-900 dark:text-white bg-white dark:bg-neutral-900 hover:opacity-90 rounded-xl transition-opacity cursor-pointer inline-flex items-center gap-2"
-            >
-              <Sparkles className="w-4 h-4 text-amber-500" />
-              <span>Launch Live Workspace</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => onOpenAuth('register')}
-              className="px-5 py-2.5 text-xs sm:text-sm font-semibold text-white dark:text-neutral-900 bg-neutral-800 dark:bg-neutral-200 hover:opacity-90 rounded-xl transition-opacity cursor-pointer"
-            >
-              Sign Up Free
-            </button>
-          </div>
-        </div>
-      </section>
 
       {/* 9. MINIMAL FOOTER */}
       <footer className="mt-auto py-8 border-t border-neutral-200/80 dark:border-neutral-800/80 bg-neutral-50 dark:bg-neutral-950">

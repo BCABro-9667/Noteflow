@@ -96,6 +96,10 @@ export const api = {
     updateProfile: async (payload: {
       name?: string;
       avatar?: string;
+      phone?: string;
+      dob?: string;
+      address?: string;
+      bio?: string;
       currentPassword?: string;
       newPassword?: string;
     }): Promise<{ user: User; message: string }> => {

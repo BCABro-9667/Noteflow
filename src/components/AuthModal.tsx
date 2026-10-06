@@ -162,54 +162,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         </button>
       )}
 
-      {/* App Logo & Header */}
-      <div className="flex flex-col items-center text-center mb-6">
-        <div className="w-11 h-11 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-xl shadow-xs mb-3">
-          N
-        </div>
-        <h1 className="text-xl font-bold text-neutral-900 dark:text-neutral-100 tracking-tight">
-          NoteFlow
-        </h1>
-        <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">
-          A clean, minimal, distraction-free workspace for your ideas.
-        </p>
-      </div>
+    
 
-        {/* 1-Click Instant Demo Button */}
-        <div className="mb-5">
-          <button
-            id="btn-auth-demo-login"
-            type="button"
-            onClick={handleDemoLogin}
-            disabled={loading}
-            className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 text-xs font-semibold rounded-xl hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors shadow-xs disabled:opacity-50 cursor-pointer"
-          >
-            <Sparkles className="w-4 h-4 text-amber-400 dark:text-amber-600" />
-            <span>Try Demo Account (Instant 1-Click)</span>
-          </button>
-
-          <div className="relative my-4">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-neutral-200 dark:border-neutral-800" />
-            </div>
-            <div className="relative flex justify-center text-[11px] uppercase tracking-wider">
-              <span className="bg-white dark:bg-neutral-900 px-2 text-neutral-400">or continue with email</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Alerts */}
-        {error && (
-          <div className="mb-4 p-3 rounded-lg bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-900 text-xs">
-            {error}
-          </div>
-        )}
-        {infoMessage && (
-          <div className="mb-4 p-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-900 text-xs flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 shrink-0" />
-            <span>{infoMessage}</span>
-          </div>
-        )}
+       
 
         {/* VIEW: LOGIN */}
         {view === 'login' && (
@@ -231,6 +186,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 />
               </div>
             </div>
+            
 
             <div>
               <div className="flex items-center justify-between mb-1">
@@ -284,7 +240,42 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 Create an account
               </button>
             </p>
+             {/* 1-Click Instant Demo Button */}
+        <div className="mb-5">
+          <button
+            id="btn-auth-demo-login"
+            type="button"
+            onClick={handleDemoLogin}
+            disabled={loading}
+            className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 text-xs font-semibold rounded-xl hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors shadow-xs disabled:opacity-50 cursor-pointer"
+          >
+            <span>Try Demo Login</span>
+          </button>
+
+          <div className="relative my-4">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-neutral-200 dark:border-neutral-800" />
+            </div>
+            <div className="relative flex justify-center text-[11px] uppercase tracking-wider">
+              <span className="bg-white dark:bg-neutral-900 px-2 text-neutral-400">or continue with email</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Alerts */}
+        {error && (
+          <div className="mb-4 p-3 rounded-lg bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-900 text-xs">
+            {error}
+          </div>
+        )}
+        {infoMessage && (
+          <div className="mb-4 p-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-900 text-xs flex items-center gap-2">
+            <CheckCircle2 className="w-4 h-4 shrink-0" />
+            <span>{infoMessage}</span>
+          </div>
+        )}
           </form>
+          
         )}
 
         {/* VIEW: REGISTER */}

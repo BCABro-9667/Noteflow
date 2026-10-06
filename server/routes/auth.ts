@@ -134,6 +134,10 @@ authRouter.post('/login', async (req: Request, res: Response): Promise<void> => 
         name: user.name,
         email: user.email,
         avatar: user.avatar,
+        phone: (user as any).phone || undefined,
+        dob: (user as any).dob || undefined,
+        address: (user as any).address || undefined,
+        bio: (user as any).bio || undefined,
         hasPin: Boolean((user as any).pin_hash),
       },
       token,
@@ -199,6 +203,10 @@ authRouter.post('/demo-login', async (_req: Request, res: Response): Promise<voi
         name: demoUser.name,
         email: demoEmail,
         avatar: demoUser.avatar,
+        phone: (demoUser as any).phone || '+1 (555) 234-5678',
+        dob: (demoUser as any).dob || '1995-04-12',
+        address: (demoUser as any).address || '742 Evergreen Terrace, San Francisco, CA',
+        bio: (demoUser as any).bio || 'Product Designer & Notes Enthusiast',
         hasPin: Boolean(demoUser.pin_hash),
       },
       token,
@@ -227,9 +235,13 @@ authRouter.get('/me', requireAuth, async (req: AuthenticatedRequest, res: Respon
       name: string;
       email: string;
       avatar: string;
+      phone?: string;
+      dob?: string;
+      address?: string;
+      bio?: string;
       created_at: string;
       has_pin: boolean;
-    }>('SELECT id, name, email, avatar, created_at, (pin_hash IS NOT NULL) AS has_pin FROM users WHERE id = $1', [userId]);
+    }>('SELECT id, name, email, avatar, phone, dob, address, bio, created_at, (pin_hash IS NOT NULL) AS has_pin FROM users WHERE id = $1', [userId]);
 
     if (result.rows.length === 0) {
       res.status(404).json({ error: 'User not found' });
@@ -242,6 +254,10 @@ authRouter.get('/me', requireAuth, async (req: AuthenticatedRequest, res: Respon
       name: row.name,
       email: row.email,
       avatar: row.avatar,
+      phone: row.phone || undefined,
+      dob: row.dob || undefined,
+      address: row.address || undefined,
+      bio: row.bio || undefined,
       createdAt: row.created_at,
       hasPin: Boolean(row.has_pin),
     };
@@ -351,16 +367,32 @@ authRouter.post('/reset-password', async (req: Request, res: Response): Promise<
 // Update Profile & Password
 authRouter.post('/update-profile', requireAuth, async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
-    const { name, avatar, currentPassword, newPassword } = req.body;
+    const { name, avatar, phone, dob, address, bio, currentPassword, newPassword } = req.body;
     const userId = req.user!.id;
     const db = await getDb();
 
-    if (name) {
+    if (name !== undefined) {
       await db.query('UPDATE users SET name = $1, updated_at = NOW() WHERE id = $2', [name.trim(), userId]);
     }
 
-    if (avatar) {
+    if (avatar !== undefined) {
       await db.query('UPDATE users SET avatar = $1, updated_at = NOW() WHERE id = $2', [avatar.trim(), userId]);
+    }
+
+    if (phone !== undefined) {
+      await db.query('UPDATE users SET phone = $1, updated_at = NOW() WHERE id = $2', [phone?.trim() || null, userId]);
+    }
+
+    if (dob !== undefined) {
+      await db.query('UPDATE users SET dob = $1, updated_at = NOW() WHERE id = $2', [dob?.trim() || null, userId]);
+    }
+
+    if (address !== undefined) {
+      await db.query('UPDATE users SET address = $1, updated_at = NOW() WHERE id = $2', [address?.trim() || null, userId]);
+    }
+
+    if (bio !== undefined) {
+      await db.query('UPDATE users SET bio = $1, updated_at = NOW() WHERE id = $2', [bio?.trim() || null, userId]);
     }
 
     if (newPassword) {
@@ -389,14 +421,22 @@ authRouter.post('/update-profile', requireAuth, async (req: AuthenticatedRequest
       name: string;
       email: string;
       avatar: string;
+      phone?: string;
+      dob?: string;
+      address?: string;
+      bio?: string;
       has_pin: boolean;
-    }>('SELECT id, name, email, avatar, (pin_hash IS NOT NULL) AS has_pin FROM users WHERE id = $1', [userId]);
+    }>('SELECT id, name, email, avatar, phone, dob, address, bio, (pin_hash IS NOT NULL) AS has_pin FROM users WHERE id = $1', [userId]);
 
     const updatedUser = {
       id: updated.rows[0].id,
       name: updated.rows[0].name,
       email: updated.rows[0].email,
       avatar: updated.rows[0].avatar,
+      phone: updated.rows[0].phone || undefined,
+      dob: updated.rows[0].dob || undefined,
+      address: updated.rows[0].address || undefined,
+      bio: updated.rows[0].bio || undefined,
       hasPin: Boolean(updated.rows[0].has_pin),
     };
 

@@ -26,6 +26,10 @@ export interface User {
   name: string;
   email: string;
   avatar?: string;
+  phone?: string;
+  dob?: string;
+  address?: string;
+  bio?: string;
   hasPin?: boolean;
   createdAt?: string;
 }

@@ -42,6 +42,10 @@ async function initSchema(db: PGlite) {
       email TEXT UNIQUE NOT NULL,
       password TEXT NOT NULL,
       avatar TEXT,
+      phone TEXT,
+      dob TEXT,
+      address TEXT,
+      bio TEXT,
       pin_hash TEXT,
       reset_token TEXT,
       reset_token_expires BIGINT,
@@ -65,7 +69,14 @@ async function initSchema(db: PGlite) {
     );
 
     ALTER TABLE users ADD COLUMN IF NOT EXISTS pin_hash TEXT;
+    ALTER TABLE users ADD COLUMN IF NOT EXISTS phone TEXT;
+    ALTER TABLE users ADD COLUMN IF NOT EXISTS dob TEXT;
+    ALTER TABLE users ADD COLUMN IF NOT EXISTS address TEXT;
+    ALTER TABLE users ADD COLUMN IF NOT EXISTS bio TEXT;
     ALTER TABLE notes ADD COLUMN IF NOT EXISTS is_locked BOOLEAN NOT NULL DEFAULT FALSE;
+
+    -- Clean up any empty notes
+    DELETE FROM notes WHERE (title IS NULL OR TRIM(title) = '') AND (content IS NULL OR TRIM(REGEXP_REPLACE(content, '<[^>]*>', '', 'g')) = '');
 
     CREATE TABLE IF NOT EXISTS tags (
       id TEXT PRIMARY KEY,

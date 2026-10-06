@@ -179,23 +179,24 @@ function NotesDashboard() {
     };
   }, [notes, currentFilter, searchQuery, selectedTagId]);
 
-  // Create Note
-  const handleCreateNote = async () => {
-    try {
-      const newNoteRes = await api.notes.create({
-        title: '',
-        content: '',
-        isPinned: currentFilter === 'pinned',
-        isFavorite: currentFilter === 'favorites',
-        tags: selectedTagId ? [selectedTagId] : [],
-      });
-      setActiveNote(newNoteRes.note);
-      fetchNotes();
-      fetchTags();
-      refreshCounts();
-    } catch (err) {
-      console.error('Failed to create note:', err);
-    }
+  // Create Note - In-memory draft only. Empty notes are NEVER created in DB until containing characters!
+  const handleCreateNote = () => {
+    const draftNote: Note = {
+      id: '',
+      userId: user?.id || '',
+      title: '',
+      content: '',
+      isPinned: currentFilter === 'pinned',
+      isFavorite: currentFilter === 'favorites',
+      isArchived: currentFilter === 'archived',
+      isLocked: false,
+      deletedAt: null,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      tags: selectedTag ? [selectedTag] : [],
+    };
+    setActiveNote(draftNote);
+    setShowProfileScreen(false);
   };
 
   // Save Note in Editor
@@ -208,6 +209,27 @@ function NotesDashboard() {
     isArchived: boolean;
     tags: string[];
   }): Promise<Note> => {
+    const cleanTitle = noteData.title?.trim() || '';
+    const cleanContent = noteData.content?.replace(/<[^>]*>/g, '').trim() || '';
+
+    // Empty notes: never create or save if completely blank
+    if (!cleanTitle && !cleanContent) {
+      return {
+        id: noteData.id || '',
+        userId: user?.id || '',
+        title: '',
+        content: '',
+        isPinned: noteData.isPinned,
+        isFavorite: noteData.isFavorite,
+        isArchived: noteData.isArchived,
+        isLocked: false,
+        deletedAt: null,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        tags: tags.filter((t) => noteData.tags.includes(t.id)),
+      };
+    }
+
     let saved: Note;
     if (noteData.id) {
       const res = await api.notes.update(noteData.id, noteData);
